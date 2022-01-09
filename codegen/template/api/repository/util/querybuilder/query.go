@@ -2,7 +2,7 @@ package querybuilder
 
 import (
 	"errors"
-	"go-ca-codegen/codegen/template/api/repository/util"
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/repository/util"
 	"reflect"
 	"strings"
 
@@ -55,8 +55,6 @@ func ParseQuery(t reflect.Type, query string) ([]interface{}, error) {
 	return nil, errors.New(query + " は無効なクエリです")
 }
 
-// TODO: gorm.ToDBName(key) を escape なしに直接 やっちゃってるけど大丈夫？
-//       一応構造体のフィールド名かチェックはしているので大丈夫とは思う
 func ParseQueryQuery(model interface{}, queryMember []string) ([][]interface{}, error) {
 	var res [][]interface{}
 	t := util.GetElementType(reflect.TypeOf(model))

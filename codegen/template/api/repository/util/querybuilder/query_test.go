@@ -1,9 +1,9 @@
 package querybuilder_test
 
 import (
-	"go-ca-codegen/codegen/template/api/repository/util/querybuilder"
 	"testing"
 
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/repository/util/querybuilder"
 	"github.com/stretchr/testify/assert"
 )
 

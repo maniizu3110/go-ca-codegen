@@ -2,13 +2,13 @@ package handler
 
 import (
 	"errors"
-	"go-ca-codegen/codegen/template/api/repository"
-	"go-ca-codegen/codegen/template/api/services"
-	"go-ca-codegen/codegen/template/models"
 	"net/http"
 	"strconv"
 
 	"github.com/labstack/echo/v4"
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/repository"
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/services"
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/models"
 	"gorm.io/gorm"
 )
 

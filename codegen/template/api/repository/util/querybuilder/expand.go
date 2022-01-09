@@ -1,9 +1,9 @@
 package querybuilder
 
 import (
-	"go-ca-codegen/codegen/template/api/repository/util"
 	"reflect"
 
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/repository/util"
 	"gorm.io/gorm"
 )
 

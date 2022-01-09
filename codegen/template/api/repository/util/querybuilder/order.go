@@ -2,10 +2,10 @@ package querybuilder
 
 import (
 	"errors"
-	"go-ca-codegen/codegen/template/api/repository/util"
 	"reflect"
 	"strings"
 
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/repository/util"
 	"gorm.io/gorm"
 )
 

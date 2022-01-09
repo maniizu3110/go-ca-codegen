@@ -2,12 +2,12 @@ package repository
 
 import (
 	"errors"
-	"go-ca-codegen/codegen/template/api/repository/util"
-	"go-ca-codegen/codegen/template/api/repository/util/querybuilder"
-	"go-ca-codegen/codegen/template/api/services"
-	"go-ca-codegen/codegen/template/models"
 	"time"
 
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/repository/util"
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/repository/util/querybuilder"
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/api/services"
+	"github.com/maniizu3110/go-ca-codegen/codegen/template/models"
 	"gorm.io/gorm"
 )
 

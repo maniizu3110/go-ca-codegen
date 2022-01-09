@@ -3,12 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"go-ca-codegen/util"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/iancoleman/strcase"
+	"github.com/maniizu3110/go-ca-codegen/util"
 )
 
 func GeneratePackage(destDir string, placeHolder string, model string) {

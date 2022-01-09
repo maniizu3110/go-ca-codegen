@@ -1,8 +1,6 @@
 package services
 
-import (
-	"go-ca-codegen/codegen/template/models"
-)
+import "github.com/maniizu3110/go-ca-codegen/codegen/template/models"
 
 //go:generate $GOPATH/bin/mockgen -source=$GOFILE -destination=${GOPACKAGE}_mock/${GOFILE}.mock.go -package=${GOPACKAGE}_mock
 
