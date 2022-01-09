@@ -1,9 +1,7 @@
-package main
-
-import "gorm.io/gorm"
+package models
 
 //go:generate go run ../codegen/main.go -file ${GOFILE} -dest ..
 
 type Test struct {
-	gorm.Model
+	Model
 }

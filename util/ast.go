@@ -12,32 +12,6 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
-func AddCommentToFunctions(f *ast.File, comment string) {
-	commentLines := strings.Split(comment, "\n")
-	comments := []*ast.CommentGroup{}
-	ast.Inspect(f, func(n ast.Node) bool {
-		switch aType := n.(type) {
-		case *ast.CommentGroup:
-			comments = append(comments, aType)
-		case *ast.FuncDecl:
-			if aType.Doc == nil {
-				aType.Doc = &ast.CommentGroup{}
-			}
-			if aType.Doc.List == nil {
-				aType.Doc.List = []*ast.Comment{}
-			}
-			for i := range commentLines {
-				aType.Doc.List = append(aType.Doc.List, &ast.Comment{
-					Text:  "// " + commentLines[i],
-					Slash: aType.Pos() - 1,
-				})
-			}
-		}
-		return true
-	})
-	f.Comments = comments
-}
-
 // ReplaceImportPath は各 import path に含まれる <from> を <to> に置き換える
 func ReplaceImportPath(f *ast.File, from string, to string) {
 	for i := range f.Imports {
@@ -70,7 +44,6 @@ func CopyFileWithReplacePlaceHolder(
 	placeHolder string, model string,
 	fromImportPath string, toImportPath string,
 	headerMessage string,
-	functionMessage string,
 ) {
 	destDir := filepath.Dir(destFile)
 	if _, err := os.Stat(destDir); os.IsNotExist(err) {
@@ -81,7 +54,6 @@ func CopyFileWithReplacePlaceHolder(
 	if err != nil {
 		panic(err)
 	}
-	AddCommentToFunctions(f, functionMessage)
 	ReplaceImportPath(f, fromImportPath, toImportPath)
 	ReplaceIdent(f, placeHolder, model)
 

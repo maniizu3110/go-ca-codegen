@@ -2,7 +2,8 @@ package repository
 
 import (
 	"errors"
-	"go-ca-codegen/codegen/template/api/repository/querybuilder"
+	"go-ca-codegen/codegen/template/api/repository/util"
+	"go-ca-codegen/codegen/template/api/repository/util/querybuilder"
 	"go-ca-codegen/codegen/template/api/services"
 	"go-ca-codegen/codegen/template/models"
 	"time"
@@ -49,7 +50,7 @@ func (m *PlaceHolderRepositoryImpl) GetByID(id uint, expand ...string) (*models.
 type GetAllPlaceHolderBaseQueryBuildFunc func(db *gorm.DB) (*gorm.DB, error)
 
 func GetAllPlaceHolderBase(config services.GetAllConfig, db *gorm.DB, companyId uint, queryBuildFunc GetAllPlaceHolderBaseQueryBuildFunc) ([]*models.PlaceHolder, uint, error) {
-	var limit int = GetAllMaxLimit
+	var limit int = util.GetAllMaxLimit
 	var offset int = 0
 	var allCount int64
 	var (
@@ -92,7 +93,7 @@ func GetAllPlaceHolderBase(config services.GetAllConfig, db *gorm.DB, companyId 
 	// 最大10000件ずつでちょっとずつ読み込む
 	load := func() (bool, error) {
 		var sub []models.PlaceHolder
-		subLimit := GetAllSubLimit
+		subLimit := util.GetAllSubLimit
 		if limit <= subLimit {
 			subLimit = limit + 1
 		}
@@ -124,7 +125,7 @@ func GetAllPlaceHolderBase(config services.GetAllConfig, db *gorm.DB, companyId 
 	if config.Limit > 0 && uint(len(model)) > config.Limit {
 		model = model[:config.Limit]
 	}
-	if len(model) > GetAllMaxLimit {
+	if len(model) > util.GetAllMaxLimit {
 		return nil, 0, errors.New("データ数が多すぎるため取得できません")
 	}
 	return model, uint(allCount), nil
@@ -135,7 +136,7 @@ func (m *PlaceHolderRepositoryImpl) GetAll(config services.GetAllConfig) ([]*mod
 }
 
 func (m *PlaceHolderRepositoryImpl) Create(data *models.PlaceHolder) (*models.PlaceHolder, error) {
-	data = ShallowCopy(data).(*models.PlaceHolder)
+	data = util.ShallowCopy(data).(*models.PlaceHolder)
 	now := m.now()
 	data.SetUpdatedAt(now)
 	data.SetCreatedAt(now)
